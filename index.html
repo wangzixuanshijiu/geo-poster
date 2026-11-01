@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>几何构成 · p5.js</title>
+<style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html, body { height: 100%; }
+    body {
+        position: relative; overflow: hidden; background: #141821;
+        font-family: -apple-system, "PingFang SC", "Microsoft YaHei", sans-serif;
+        color: #94A3B8;
+    }
+    h1 {
+        position: absolute; top: 34px; left: 0; right: 0; text-align: center;
+        font-size: 13px; font-weight: 500; letter-spacing: .42em; text-indent: .42em; color: #CBD5E1;
+    }
+    body > main { position: static; line-height: 0; }
+    canvas.p5Canvas {
+        position: absolute !important; left: 50%; top: 50%;
+        transform: translate(-50%, -50%); display: block;
+        box-shadow: 0 0 0 1px rgba(255,255,255,.06), 0 26px 70px rgba(0,0,0,.75);
+    }
+    .tips {
+        position: absolute; bottom: 26px; left: 0; right: 0; text-align: center;
+        font-size: 12px; letter-spacing: .06em;
+    }
+</style>
+</head>
+<body>
+    <h1>几何构成</h1>
+    <div class="tips">静态作品 · 只画一次 · 800 × 1000</div>
+    <script src="./p5.min.js"></script>
+    <script src="./几何构成.js"></script>
+    <script>
+        (function fit(tries) {
+            var cv = document.querySelector('canvas.p5Canvas');
+            if (cv) {
+                var s = Math.min(1, (innerHeight - 130) / 1000, (innerWidth - 60) / 800);
+                cv.style.width = Math.round(800 * s) + 'px';
+                cv.style.height = Math.round(1000 * s) + 'px';
+                return;
+            }
+            if (tries > 0) setTimeout(function () { fit(tries - 1); }, 100);
+        })(30);
+    </script>
+</body>
+</html>
